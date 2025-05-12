@@ -58,12 +58,14 @@ export default function HomePage() {
   const [bestScore, setBestScore] = useState(0);
   const [clickedImages, setClickedImages] = useState([]);
 
-  // Shuffle Function
-  const shuffleArray = (array) => {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
+  const Arraychangefunction = (array) => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+
+      const temp = array[i];
+      array[i] = newArray[j]  
+      newArray[i] = temp;
     }
     return shuffled;
   };
@@ -81,7 +83,7 @@ export default function HomePage() {
       // Continue Game
       setScore(score + 1);
       setClickedImages([...clickedImages, clickedName]);
-      setImages(shuffleArray(images));
+      setImages(Arraychangefunction(images));
     }
   };
 
