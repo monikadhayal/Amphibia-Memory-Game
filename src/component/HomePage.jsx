@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 export default function HomePage() {
-  const originalImages = [
+  let originalImages = [
     {
       link: "https://heldersrvio.github.io/memory-card-game/static/media/anne.d9d14c90.jpg",
       name: "anne Boonchuy",
@@ -63,24 +63,23 @@ export default function HomePage() {
     for (let i = newArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
 
-      const temp = array[i];
-      array[i] = newArray[j]  
-      newArray[i] = temp;
+      let temp = newArray[i];
+      newArray[i] = newArray[j] ; 
+      newArray[j] = temp;
     }
-    return shuffled;
+    return newArray;
   };
+  
 
   const handleClicked = (index) => {
     const clickedName = images[index].name;
 
     if (clickedImages.includes(clickedName)) {
-      
-      // alert("Game Over! You clicked the same image.");
       setBestScore(Math.max(score, bestScore));
       setScore(0);
       setClickedImages([]);
     } else {
-      // Continue Game
+     
       setScore(score + 1);
       setClickedImages([...clickedImages, clickedName]);
       setImages(Arraychangefunction(images));
@@ -134,4 +133,6 @@ export default function HomePage() {
     </div>
   );
 }
+
+
 
